@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件修饰符</title>
+    <script src="js/vue.js"></script>
+</head>
+<style>
+    * {
+        margin-top: 20px;
+    }
+    .demo {
+        height: 50px;
+        background-color: dodgerblue;
+    }
+    .box1{
+        height: auto;
+        background-color: aqua;
+    }
+    .box2{
+        height: auto;
+        background-color: blueviolet;
+    }
+    .list{
+        height: 200px;
+        background-color: orange;
+        width: 200px;
+        overflow: auto;
+    }
+    .list li{
+        height: 100px;
+    }
+</style>
+<body>
+<div id="root">
+    <h2>名字：{{name}}</h2>
+    <!--阻止默认事件-->
+    <a href="https://www.baidu.com" @click.prevent="showInfo">点击提示信息</a>
+
+   <!--阻止事件冒泡-->
+    <div class="demo" @click.stop="showInfo">
+        <button @click="showInfo">点击提示信息</button>
+    </div>
+
+    <!--事件只触发一次-->
+    <button @click.once="showInfo">点击提示信息</button>
+
+    <!--事件的捕获模式-->
+    <!--默认是在冒泡阶段处理事件-->
+    <div class="box1" @click.capture="showMsg(1)">
+        div1
+        <div class="box2" @click="showMsg(2)">
+            div2
+        </div>
+    </div>
+
+    <!--只有event.target是当前操作元素时才可以触发事件-->
+    <div class="demo" @click.self="showInfo">
+        <button @click="showInfo">点击提示信息</button>
+    </div>
+
+    <!--事件的默认行为立即执行，无需等待时间回调执行完成-->
+    <ul @wheel.passive="demo" class="list">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+<script>
+    let vm = new Vue({
+        data: {
+            name: "你猜"
+        },
+        methods: {
+            showInfo(e) {
+                alert("弹窗")
+                // console.log(e.target)
+            },
+            showMsg(msg) {
+                console.log(msg)
+            },
+            demo(){
+                for (let i = 0; i < 1000; i++){
+                    console.log("#")
+                }
+                console.log("结束")
+            }
+        }
+    })
+    vm.$mount("#root")
+</script>
+</html>

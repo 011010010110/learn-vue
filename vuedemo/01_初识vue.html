@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入vue -->
+    <script src="js/vue.js"></script>
+    <title>初识vue</title>
+</head>
+<body>
+    <!--准备一个容器-->
+    <div id="app">
+        hello，{{name}} <br> from {{source}}
+    </div>
+</body>
+
+<script>
+    let app = new Vue({
+        el: '#app',   //el->element，元素    用于指定当前Vue示例为哪个容器服务，值通常为css选择器字符串
+        data:{    //data中用于存储数据，数据供 el 所指定的容器去使用
+            name:'world',
+            source:'vue'
+        }
+    })
+    app.name = 'kitty'
+</script>
+</html>

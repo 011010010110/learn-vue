@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.defineProperty()</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    let number = 19
+    let person = {
+        name: '张三',
+        sex: '男'
+    }
+    Object.defineProperty(person, 'age', {
+        get: function () {
+            return number
+        },
+        set() {
+            console.log("调用setter,进行数值修改")
+            return number
+        }
+    })
+
+    // for (const keys in person) {
+    //     console.log(keys)
+    // }
+    // console.log(Object.keys(person))
+</script>
+</html>

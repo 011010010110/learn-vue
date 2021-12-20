@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div class="root">
+    <label>
+        姓:&nbsp<input type="text" v-model="firstName">
+    </label><br>
+    <label>
+        名:&nbsp<input type="text" v-model="lastName">
+    </label><br>
+    姓名:&nbsp{{fullName()}}
+</div>
+</body>
+<script>
+    let vm = new Vue({
+        el: ".root",
+        data: {
+            firstName: "刘",
+            lastName: "岳"
+        },
+        methods:{
+            fullName(){
+                return this.firstName + this.lastName
+            }
+        }
+    })
+</script>
+</html>

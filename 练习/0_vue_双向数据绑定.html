@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .inputs{
+            width: 50px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <label>
+            请输入你的身高：<input type="text" v-model:value="height" maxlength="5" :class="textStyle">&nbsp;cm
+        </label>
+        <h3>你的身高是：{{height}}&nbsp;cm</h3>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '.root',
+        data: {
+            height:"",
+            textStyle: 'inputs'
+        }
+    })
+</script>
+</html>

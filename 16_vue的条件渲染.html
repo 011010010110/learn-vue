@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="root">
+        <h2 v-show="false">今天是{{date}}</h2>
+        <h2 v-if="false">今天是{{date}}</h2>
+
+        <h2>当前n的值是:{{n}}</h2>
+        <button @click="addNumbers">点击n+1</button>
+
+        <div v-show="n === 1">先出现的</div>
+        <div v-show="n === 2">然后是</div>
+        <div v-show="n === 3">最后是</div>
+
+        <!--如果用v-if、v-if-else、v-else做配合，响应的div要相邻在一起-->
+        <!--v-if与template的配合使用-->
+        <template>
+            <div v-if="n === 1">Angular</div>
+            <div v-else-if="n === 2">React</div>
+            <div v-else-if="n === 3">Vue</div>
+            <div v-else="n">JQuery是个库，不是框架</div>
+        </template>
+    </div>
+</body>
+<script>
+    let mv = new Vue({
+        el: '.root',
+        data: {
+            date: "2021年12月24号",
+            n: 0
+        },
+        methods: {
+            addNumbers(){
+                return this.n++
+            }
+        },
+    })
+</script>
+</html>

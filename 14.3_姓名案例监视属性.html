@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例监视属性</title>
+</head>
+<script src="js/vue.js"></script>
+<body>
+<div class="root">
+    <label>
+        姓：<input type="text" v-model="firstName">
+    </label><br>
+    <label>
+        名：<input type="text" v-model="lastName">
+    </label><br>
+    <span>
+        全名：{{fullName}}
+    </span>
+</div>
+</body>
+<script>
+    let vm = new Vue({
+        el: ".root",
+        data: {
+            firstName: "刘",
+            lastName: "岳",
+            fullName: "刘岳"
+        },
+        watch: {
+            firstName(newValue){
+                setTimeout(() => {
+                    console.log(this)
+                    this.fullName = newValue + this.lastName
+                }, 1000);
+            },
+            lastName(newValue){
+                setTimeout(() => {
+                    this.fullName = this.firstName + newValue 
+                }, 2000);
+            }
+        }
+    })
+</script>
+</html>

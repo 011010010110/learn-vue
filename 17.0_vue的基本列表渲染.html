@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表渲染</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="root">
+        <h1>遍历数组</h1>
+        <ul>
+            <!--遍历数组-->
+            <li v-for="(p, index) in persons" :key="p.id">{{p.name}}-{{p.age}}---{{index}}</li>
+        </ul>
+
+        <h1>遍历对象</h1>
+        <ul>
+            <!--遍历对象-->
+            <li v-for="(value, k) in car" :key="k">{{k}}===={{value}}</li>
+        </ul>
+
+        <h1>遍历字符串</h1>
+        <ul>
+            <!--遍历字符串  用的不多-->
+            <li v-for="(char, index) in str" :key="">{{char}}==={{index}}</li>
+        </ul>
+
+        <h1>指定遍历次数</h1>
+        <ul>
+            <!--遍历指定次数  用的更少-->
+            <li v-for="(number,index) in 5" ::key="index">{{number}}----{{index}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '.root',
+        data: {
+            persons: [
+                {id: "001", name: "Angular", age:23},
+                {id: "002", name: "React", age:24},
+                {id: "003", name: "Vue", age:26},
+            ],
+            car: {
+                id: "001",
+                name: "电动车",
+                price: "1000块",
+                color: "黑色"
+            },
+            str: 'hello',
+        }
+    })
+</script>
+
+</html>

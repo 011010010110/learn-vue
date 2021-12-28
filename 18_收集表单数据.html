@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收集表单数据</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div class="root">
+        <form @submit.prevent="demo">
+            <label for="inputAccount">账号：<input type="text" id="inputAccount" v-model="userInfo.account"></label><br>
+            <label for="inputPwd">密码：<input type="password" id="inputPwd" v-model="userInfo.password"></label><br>
+            <label for="choseGender">
+                性别：
+                <input type="radio" name="gender" value="man" v-model="userInfo.gender">男
+                &nbsp;&nbsp;&nbsp;
+                <input type="radio" name="gender" value="woman" v-model="userInfo.gender">女
+            </label><br>
+            <label for="choseHobby">
+                爱好：
+                <input type="checkbox" v-model="hobby" value="userInfo.music">听歌
+                <input type="checkbox" v-model="hobby" value="userInfo.game">打游戏
+                <input type="checkbox" v-model="hobby" value="userInfo.work">不上班
+            </label><br>
+            <select v-model="city">
+                <option value="">请选择居住地</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+            </select><br><br>
+            其他信息：
+            <textarea v-model.lazy="userInfo.other"></textarea><br>
+            <label for="">
+                <input type="checkbox" v-model="userInfo.agree"><p style="display: inline-block;">同意<a href="">《用户协议》</a></p>     
+            </label><br>
+            <button>提交</button>       
+        </form>
+    </div>
+</body>
+<script>
+    const vm = new Vue({
+        el: '.root',
+        data: {
+            userInfo: {
+                account: "",
+                password: "",
+                gender: "man", 
+                hobby: [],
+                city: "",
+                other: "",
+                agree:"false",
+            }
+        },
+        methods: {
+            demo(){
+               console.log(JSON.stringify(this.userInfo)) 
+            }
+        },
+    })
+</script>
+</html>

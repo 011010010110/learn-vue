@@ -9,14 +9,37 @@
 </head>
 <body>
     <div class="root">
-
+        <label>
+            <input type="text" placeholder="请输入姓名" v-model="keyWord">
+        </label>
+        <button>年龄升序</button>
+        <button>年龄降序</button>
+        <button>原顺序</button>
+        <ul>
+            <li v-for="(p, index) in filePersons" :key="p.id">{{p.name}}--{{p.age}}--{{p.gender}}</li>
+        </ul>
     </div>
 </body>
 <script>
     new Vue({
         el: '.root',
         data: {
-            
+            keyWord: "",
+            persons: [
+                {id:"001", name:"马冬梅", age:23, gender:"woman"},
+                {id:"002", name:"周冬雨", age:24, gender:"woman"},
+                {id:"003", name:"周杰伦", age:25, gender:"man"},
+                {id:"004", name:"温兆伦", age:26, gender:"man"},
+            ]
+        },
+        computed: {
+            filePersons: {
+                get(){
+                    return this.persons.filter((p)=>{
+                        return p.name.includes(this.keyWord)
+                    })
+                }
+            }
         }
     })
 </script>

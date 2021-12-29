@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-cloak</title>
+    <script src="js/vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="root">
+        <h2>{{name}}</h2>
+    </div>
+</body>
+<script>
+
+    // 没法举例子，为了就是防止外部引入js加载时间过长，可以写css样式
+    new Vue({
+        el: '.root',
+        data: {
+            name: "刘岳"
+            
+        },
+    })
+</script>
+</html>

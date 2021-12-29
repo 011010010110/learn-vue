@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的基本使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div class="root">
+        <!--3、使用组件-->
+        <hi></hi>
+        <company-info></company-info>
+        <hr>
+        <personal-info></personal-info>
+
+    </div>
+    <div class="root2">
+        <hi></hi>
+    </div>
+</body>
+<script>
+
+    // 1、创建组件
+    const company = Vue.extend({
+        // el: '.root',    //一定不要写el配置项，最终所有组件都要被vm管理，由vm决定服务于哪个容器
+        template: `<div>
+                    <h2>公司名称: {{nameTheCompany}}</h2>
+                    <h2>地址: {{address}}</h2>
+                   </div>`,
+        data() {
+            return{
+                nameTheCompany: "你猜",
+                address: '你再猜',
+            }
+        },        
+    })
+    const personal = {
+        template: `<div>
+                    <h2>姓名: {{name}}</h2>
+                    <h2>年龄: {{age}}</h2>
+                   </div>`,
+        data() {
+            return{
+                name: '刘岳',
+                age: 23,
+            }
+        }
+    }
+    const other = Vue.extend({
+        template: `<div>
+                <h2>你好{{name}}</h2>
+            </div>`,
+            data() {
+                return{
+                    name: "timi"
+                }
+            }
+    })
+
+    //注册全局组件
+    Vue.component('hi',other)
+
+    new Vue({
+        el: '.root',
+        components: {
+            // 2、注册组件(局部注册)
+            companyInfo: company,
+            personalInfo: personal,
+        }
+    })
+
+    new Vue({
+        el: '.root2',
+    })
+</script>
+</html>
